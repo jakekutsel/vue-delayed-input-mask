@@ -1,0 +1,36 @@
+{
+  "name": "vue-delayed-input-mask",
+  "version": "0.0.1",
+  "description": "A Vue.js component for delay hide password input.",
+  "author": "Jake Kutsel<e.kutel@invenot.by>",
+  "license": "MIT",
+  "keywords": ["vue", "vue-password", "vue debounce"],
+  "descriptiion": {},
+  "repository": "https://github.com/jakekutsel/vue-delayed-input-mask",
+  "homepage": "https://github.com/jakekutsel/vue-delayed-input-mask",
+  "scripts": {
+    "build": "rimraf ./dist && webpack --config ./webpack.config.js"
+  },
+  "main": "dist/vue-delayed-input-mask.min.js",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^8.2.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-runtime": "^6.9.2",
+    "rimraf": "^2.6.1",
+    "vue": "^2.5.2",
+    "vue-loader": "^11.1.4",
+    "webpack": "^3.6.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "webpack-merge": "^4.1.0"
+  }
+}
