@@ -34,7 +34,7 @@ Vue.use(VueDelayedInputMask);
 - *keyEnter*
 - *hideFieldType*
 ### How it work
-[![N|Solid](https://github.com/jakekutsel/vue-delayed-input-mask/assets/example/example.gif)]
+[![N|Solid](https://image.ibb.co/cOx6W9/example.gif)]
 
 ### Example
 ```js
