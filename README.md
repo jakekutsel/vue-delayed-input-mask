@@ -14,10 +14,44 @@ $ npm i vue-delayed-input-mask
 * [lodash]
 * [webpack]
 
-### Todos
+### Configuration
+```js
+import VueDelayedInputMask from "vue-delayed-input-mask";
+Vue.use(VueDelayedInputMask);
+```
+##### Properties
+- *id*
+- *value*
+- *name (required)*
+- *placeholder*
+- *wrapperClassName*
+- *classNames*
+- *debounceTime (default: 1000ms)*
+- *fillChar (default: "*")*
+- *needClearOnFocus (default: false)*
+- *needFillOnBlur (default: true)*
+- *disabled (default: false)*
+- *keyEnter*
+- *hideFieldType*
+### How it work
+[![N|Solid](https://github.com/jakekutsel/vue-delayed-input-mask/assets/example/example.gif)]
 
- - Write MORE Tests
- - Add Night Mode
+### Example
+```js
+<vue-delayed-password-mask
+    name="password"
+    v-model="password"
+    placeholder="Password"
+    :classNames="['input']"
+    @keyup.enter="action">
+</vue-delayed-password-mask>
+```
+### Known bugs
+
+- [ ] Fast input broken clear value
+
+### Todos
+- [ ] Add default slot for mouseenter event for show hidden input value
 
 License
 ----
@@ -28,8 +62,9 @@ MIT
 [//]: # ()
 
 
-   [vue-delayed-input-mask]: <https://github.com/joemccann/dillinger>
+   [vue-delayed-input-mask]: <https://github.com/jakekutsel/vue-delayed-input-mask>
    [lodash]: <https://lodash.com>
+   [example]: https://github.com/jakekutsel/vue-delayed-input-mask/assets/example/example.gif
    [vue]: <https://vuejs.org/>
    [invento]: <http://invento-labs.com/>
    [webpack]: <https://webpack.js.org/>
