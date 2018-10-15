@@ -38,17 +38,17 @@ Vue.use(VueDelayedInputMask);
 
 ### Example
 ```js
-<vue-delayed-password-mask
+<vue-delayed-input-mask
     name="password"
     v-model="password"
     placeholder="Password"
     :classNames="['input']"
     @keyup.enter="action">
-</vue-delayed-password-mask>
+</vue-delayed-input-mask>
 ```
 ### Known bugs
 
-- [ ] Fast input broken clear value
+- [x] Fast input broken clear value
 
 ### Todos
 - [ ] Add default slot for mouseenter event for show hidden input value

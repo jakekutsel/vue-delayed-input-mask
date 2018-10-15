@@ -1,7 +1,7 @@
 <script>
     import _ from "lodash";
 
-    const HIDE_DELAY = 1000;
+    const HIDE_DELAY = 800;
     const FILL_CHAR = "*";
     const EMPTY_STRING = "";
     const ENTER_KEY_CODE = 13;
@@ -37,7 +37,7 @@
                     return [];
                 },
             },
-            debounceTime: {
+            delayTime: {
                 default: () => {
                     return HIDE_DELAY;
                 },
@@ -66,7 +66,7 @@
             },
             hideFieldType: {
                 type: String,
-                default: "hidden"
+                default: "hidden",
             },
         },
         data() {
@@ -75,13 +75,19 @@
                 clear: this.value,
             };
         },
+        created() {
+            this.$on("fillInput", payload => {
+                let filling = _.throttle(this.__fillPattern, this.delayTime, { leading: false });
+                filling(payload.$event, payload.i);
+            });
+        },
         methods: {
             /**
              * Handle input into password input
              * @param $event
              * @private
              */
-            __keyUpHandler($event) {
+            __inputHandler($event) {
                 if ($event.keyCode === ENTER_KEY_CODE) {
                     this.keyEnter();
                 }
@@ -98,16 +104,17 @@
             __computeInputData($event, value = false) {
                 let selectIndex = $event.target.selectionStart;
                 let inputValues = value ? value : $event.target.value;
+                let realValue = $event.target.value;
                 let shift = inputValues.length - this.clear.length;
 
                 if (shift > 0) {
-                    let addedChars = inputValues.slice(selectIndex - shift, selectIndex);
+                    let addedChars = realValue.slice(selectIndex - shift, selectIndex);
                     this.clear =
                         this.clear.slice(0, selectIndex - shift) + addedChars + this.clear.slice(selectIndex - shift);
                 } else if (shift < 0) {
                     this.clear = this.clear.slice(0, selectIndex) + this.clear.slice(selectIndex - shift);
                 }
-                this.__fillPattern($event, selectIndex);
+                this.$emit("fillInput", { $event, selectIndex });
             },
             /**
              * Handle paste event and call compute method
@@ -128,13 +135,12 @@
             /**
              * Fill field chars by symbol from props
              */
-            __fillPattern: _.debounce(function($event, i = false) {
+            __fillPattern($event = false, i = false) {
                 this.$set(this, "input", this.fillChar.repeat(this.input.length));
-
                 setTimeout(() => {
                     $event.target.setSelectionRange(i ? i : this.input.length, i ? i : this.input.length);
                 }, 0);
-            }, this.debounceTime),
+            },
             /**
              * Check Ctrl, Enter, Shift and other keys
              * @param keyCode
@@ -173,6 +179,7 @@
                 },
                 on: {
                     input: $event => {
+                        this.__inputHandler($event);
                         this.__inputProxy($event, "input");
                         $event.preventDefault();
                     },
@@ -184,9 +191,6 @@
                     },
                     paste: $event => {
                         this.__copyPasteHandler($event);
-                    },
-                    keyup: $event => {
-                        this.__keyUpHandler($event);
                     },
                 },
             });
