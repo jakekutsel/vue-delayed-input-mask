@@ -72,7 +72,7 @@
         data() {
             return {
                 input: EMPTY_STRING,
-                clear: this.value,
+                clear: (_.isUndefined(this.value) || _.isNull(this.value)) ? EMPTY_STRING : this.value,
             };
         },
         created() {

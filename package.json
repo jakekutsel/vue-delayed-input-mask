@@ -1,6 +1,6 @@
 {
   "name": "vue-delayed-input-mask",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "A Vue.js component for delay hide password input.",
   "author": "Jake Kutsel<e.kutel@invenot.by>",
   "license": "MIT",
